@@ -61,12 +61,12 @@ VALUES ('Realismo Mágico'),
        ('Ciencia Ficción');
 
 -- Editoriales
-INSERT INTO editorial (nombre, direccion, telefono, email, pais)
-VALUES ('Editorial Sudamericana', 'Buenos Aires, Argentina', '+54 11 4567 8901', 'contacto@sudamericana.com',
+INSERT INTO editorial (nombre, direccion, telefono, pais)
+VALUES ('Editorial Sudamericana', 'Buenos Aires, Argentina', '+54 11 4567 8901',
         'Argentina'),
-       ('Allen & Unwin', 'London, UK', '+44 20 1234 5678', 'info@allen-unwin.co.uk', 'Reino Unido'),
-       ('Secker & Warburg', 'London, UK', '+44 20 8765 4321', 'editorial@seckerwarburg.co.uk', 'Reino Unido'),
-       ('Gnome Press', 'New York, USA', '+1 212 555 7890', 'contact@gnomepress.com', 'Estados Unidos');
+       ('Allen & Unwin', 'London, UK', '+44 20 1234 5678', 'Reino Unido'),
+       ('Secker & Warburg', 'London, UK', '+44 20 8765 4321', 'Reino Unido'),
+       ('Gnome Press', 'New York, USA', '+1 212 555 7890', 'Estados Unidos');
 
 -- Libros
 INSERT INTO libro (titulo, anio_publicacion, disponible, autor_id, genero_id, editorial_id)
