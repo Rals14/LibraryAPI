@@ -1,6 +1,9 @@
 package org.kodigo.libraryapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -12,12 +15,15 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "name cannot be blank")
     private String nombre;
 
     private String apellido;
 
+    @NotNull(message = "date of birth cannot be null")
     private Date fecha_nacimiento;
 
+    @NotBlank(message = "country cannot be blank")
     private String nacionalidad;
 
     public Autor() {

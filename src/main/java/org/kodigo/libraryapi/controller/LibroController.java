@@ -35,8 +35,13 @@ public class LibroController {
     }
 
     @PostMapping("/libros")
-    private Libro addLibro(@RequestBody Libro libro) {
-        return libroRepository.save(libro);
+    public ResponseEntity<?> addLibro(@RequestBody Libro libro) {
+        List<Libro> existing = libroRepository.findByTitulo(libro.getTitulo());
+        if (!existing.isEmpty()) {
+            return ResponseEntity.badRequest().body("A book with this title already exists.");
+        }
+        Libro saved = libroRepository.save(libro);
+        return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/libros/{id}")

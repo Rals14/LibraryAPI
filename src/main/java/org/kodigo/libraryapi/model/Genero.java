@@ -1,6 +1,7 @@
 package org.kodigo.libraryapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table (name = "genero")
@@ -10,6 +11,7 @@ public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @NotBlank(message= "name cannot be blank")
     private String nombre;
 
     public Genero() {
