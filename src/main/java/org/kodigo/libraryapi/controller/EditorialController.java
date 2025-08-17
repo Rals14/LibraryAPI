@@ -37,8 +37,13 @@ public class EditorialController {
     }
 
     @PostMapping("/editoriales")
-    public Editorial add(@RequestBody Editorial editorial)  {
-        return repository.save(editorial);
+    public ResponseEntity<?> add(@RequestBody Editorial editorial)  {
+        List<Editorial> existing = repository.findByNombre(editorial.getNombre());
+        if (!existing.isEmpty()) {
+            return ResponseEntity.badRequest().body("An editorial with this name already exists.");
+        }
+        Editorial saved = repository.save(editorial);
+        return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/editoriales/{id}")

@@ -35,8 +35,13 @@ public class AutorController {
     }
 
     @PostMapping("/autor")
-    public Autor add(@RequestBody Autor autor) {
-        return repository.save(autor);
+    public ResponseEntity<?> add(@RequestBody Autor autor) {
+        List<Autor> existing = repository.findByNombreAndApellido(autor.getNombre(), autor.getApellido());
+        if (!existing.isEmpty()) {
+            return ResponseEntity.badRequest().body("An author with this name and surname already exists.");
+        }
+        Autor saved = repository.save(autor);
+        return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/autor/{id}")

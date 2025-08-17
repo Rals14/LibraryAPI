@@ -33,8 +33,13 @@ public class GeneroController {
     }
 
     @PostMapping("/generos")
-    public Genero add(@RequestBody Genero genero)  {
-        return repository.save(genero);
+    public ResponseEntity<?> add(@RequestBody Genero genero)  {
+        List<Genero> existing = repository.findByNombre(genero.getNombre());
+        if (!existing.isEmpty()) {
+            return ResponseEntity.badRequest().body("A genre with this name already exists.");
+        }
+        Genero saved = repository.save(genero);
+        return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/generos/{id}")

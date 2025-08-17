@@ -1,6 +1,9 @@
 package org.kodigo.libraryapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -10,12 +13,17 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Title cannot be blank")
     private String titulo;
+    @Positive(message = "Year of publication must be a positive number")
+    @NotNull(message = "Year of publication cannot be null")
     private Long anio_publicacion;
     private Boolean disponible;
+    @NotNull(message = "Autor ID cannot be null")
     private Long autor_id;
+    @NotNull(message = "Editorial ID cannot be null")
     private Long editorial_id;
+    @NotNull(message = "Genero ID cannot be null")
     private Long genero_id;
 
     public Libro() {
